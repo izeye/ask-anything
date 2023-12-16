@@ -2,27 +2,6 @@
 <head>
     <title>Ask Anything</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        function ask() {
-            let question = $("#question").val();
-            if (!question) {
-                $("#status").text("Enter a question first!");
-                return;
-            }
-
-            $("#status").text("Asking...");
-
-            $("#ask").prop("disabled", true);
-
-            $.get("/api/v1/ask", { question:  question }, function (data) {
-                $("#answer").val(data.text);
-
-                $("#ask").prop("disabled", false);
-
-                $("#status").text("Enter another question.");
-            });
-        }
-    </script>
 </head>
 <body>
 <h1>Ask Anything!</h1>
@@ -32,7 +11,7 @@
             Question:
             <input type="text" id="question" size="100" />
         </label>
-        <input type="button" value="Ask!" onclick="ask()" id="ask" />
+        <input type="button" value="Ask!" id="ask" />
         <div id="status">Enter a question.</div>
     </div>
     <div>
@@ -40,5 +19,32 @@
         <textarea id="answer" rows="10" cols="100"></textarea>
     </div>
 </div>
+<script>
+    $("#ask").click(function () {
+        let question = $("#question").val();
+        if (!question) {
+            $("#status").text("Enter a question first!");
+            return;
+        }
+
+        $("#status").text("Asking...");
+
+        $("#ask").prop("disabled", true);
+
+        $.get("/api/v1/ask", { question:  question }, function (data) {
+            $("#answer").val(data.text);
+
+            $("#ask").prop("disabled", false);
+
+            $("#status").text("Enter another question.");
+        });
+    });
+
+    $("#question").keypress(function (e) {
+        if (e.which === 13) {
+            $("#ask").click();
+        }
+    });
+</script>
 </body>
 </html>
