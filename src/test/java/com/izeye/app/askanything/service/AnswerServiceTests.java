@@ -1,5 +1,7 @@
 package com.izeye.app.askanything.service;
 
+import com.izeye.app.askanything.domain.Answer;
+import com.izeye.app.askanything.domain.Question;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +21,9 @@ class AnswerServiceTests {
 
     @Test
     void ask() {
-        String answer = this.service.ask("What is your name?");
-        System.out.println("answer: " + answer);
-        assertThat(answer).isNotEmpty();
+        Question question = new Question("What is your name?", "1.2.3.4");
+        Answer answer = this.service.ask(question);
+        assertThat(answer).isNotNull();
     }
 
 }

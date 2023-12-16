@@ -1,6 +1,9 @@
 package com.izeye.app.askanything.web;
 
+import com.izeye.app.askanything.domain.Answer;
+import com.izeye.app.askanything.domain.Question;
 import com.izeye.app.askanything.service.AnswerService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +25,9 @@ public class ApiController {
     }
 
     @GetMapping("/ask")
-    public String ask(@RequestParam String question) {
-        return this.service.ask(question);
+    public Answer ask(@RequestParam String question, HttpServletRequest request) {
+        Question q = new Question(question, request.getRemoteAddr());
+        return this.service.ask(q);
     }
 
 }

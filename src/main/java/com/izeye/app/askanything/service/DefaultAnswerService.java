@@ -1,5 +1,7 @@
 package com.izeye.app.askanything.service;
 
+import com.izeye.app.askanything.domain.Answer;
+import com.izeye.app.askanything.domain.Question;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.client.AiClient;
 import org.springframework.stereotype.Service;
@@ -20,9 +22,10 @@ public class DefaultAnswerService implements AnswerService {
     }
 
     @Override
-    public String ask(String question) {
-        String answer = this.client.generate(question);
+    public Answer ask(Question question) {
         log.info("Question: {}", question);
+        String answerText = this.client.generate(question.text());
+        Answer answer = new Answer(answerText);
         log.info("Answer: {}", answer);
         return answer;
     }

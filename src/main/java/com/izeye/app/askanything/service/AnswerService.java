@@ -1,5 +1,8 @@
 package com.izeye.app.askanything.service;
 
+import com.izeye.app.askanything.domain.Answer;
+import com.izeye.app.askanything.domain.Question;
+
 /**
  * Answer service.
  *
@@ -7,6 +10,6 @@ package com.izeye.app.askanything.service;
  */
 public interface AnswerService {
 
-    String ask(String question);
+    Answer ask(Question question);
 
 }
