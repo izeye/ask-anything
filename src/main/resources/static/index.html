@@ -4,8 +4,22 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         function ask() {
-            $.get("/api/v1/ask", { question:  $("#question").val() }, function (data) {
+            let question = $("#question").val();
+            if (!question) {
+                $("#status").text("Enter a question first!");
+                return;
+            }
+
+            $("#status").text("Asking...");
+
+            $("#ask").prop("disabled", true);
+
+            $.get("/api/v1/ask", { question:  question }, function (data) {
                 $("#answer").val(data.text);
+
+                $("#ask").prop("disabled", false);
+
+                $("#status").text("Enter another question.");
             });
         }
     </script>
@@ -18,7 +32,8 @@
             Question:
             <input type="text" id="question" size="100" />
         </label>
-        <input type="button" value="Ask!" onclick="ask()" />
+        <input type="button" value="Ask!" onclick="ask()" id="ask" />
+        <div id="status">Enter a question.</div>
     </div>
     <div>
         <label for="answer">Answer:</label>
