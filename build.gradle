@@ -31,6 +31,8 @@ dependencies {
 
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	checkstyle 'io.spring.javaformat:spring-javaformat-checkstyle:0.0.40'
 }
 
 tasks.named('test') {
