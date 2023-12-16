@@ -18,16 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1")
 public class ApiController {
 
-    private final AnswerService service;
+	private final AnswerService service;
 
-    public ApiController(AnswerService service) {
-        this.service = service;
-    }
+	public ApiController(AnswerService service) {
+		this.service = service;
+	}
 
-    @GetMapping("/ask")
-    public Answer ask(@RequestParam String question, HttpServletRequest request) {
-        Question q = new Question(question, request.getRemoteAddr());
-        return this.service.ask(q);
-    }
+	@GetMapping("/ask")
+	public Answer ask(@RequestParam String question, HttpServletRequest request) {
+		Question q = new Question(question, request.getRemoteAddr());
+		return this.service.ask(q);
+	}
 
 }

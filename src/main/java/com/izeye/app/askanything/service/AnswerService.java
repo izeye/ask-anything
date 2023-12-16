@@ -10,6 +10,6 @@ import com.izeye.app.askanything.domain.Question;
  */
 public interface AnswerService {
 
-    Answer ask(Question question);
+	Answer ask(Question question);
 
 }

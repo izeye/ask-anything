@@ -16,14 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class AnswerServiceTests {
 
-    @Autowired
-    private AnswerService service;
+	@Autowired
+	private AnswerService service;
 
-    @Test
-    void ask() {
-        Question question = new Question("What is your name?", "1.2.3.4");
-        Answer answer = this.service.ask(question);
-        assertThat(answer).isNotNull();
-    }
+	@Test
+	void ask() {
+		Question question = new Question("What is your name?", "1.2.3.4");
+		Answer answer = this.service.ask(question);
+		assertThat(answer).isNotNull();
+	}
 
 }
