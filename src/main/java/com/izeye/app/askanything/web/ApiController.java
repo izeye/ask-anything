@@ -1,6 +1,6 @@
 package com.izeye.app.askanything.web;
 
-import org.springframework.ai.client.AiClient;
+import com.izeye.app.askanything.service.AnswerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1")
 public class ApiController {
 
-    private final AiClient client;
+    private final AnswerService service;
 
-    public ApiController(AiClient client) {
-        this.client = client;
+    public ApiController(AnswerService service) {
+        this.service = service;
     }
 
     @GetMapping("/ask")
     public String ask(@RequestParam String question) {
-        return this.client.generate(question);
+        return this.service.ask(question);
     }
 
 }
