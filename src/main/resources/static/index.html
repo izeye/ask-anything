@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <title>Ask Anything</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        function ask() {
+            $.get("/api/v1/ask", { question:  $("#question").val() }, function (data) {
+                $("#answer").val(data.text);
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>Ask Anything!</h1>
+<div>
+    <div>
+        <label>
+            Question:
+            <input type="text" id="question" size="100" />
+        </label>
+        <input type="button" value="Ask!" onclick="ask()" />
+    </div>
+    <div>
+        <label for="answer">Answer:</label>
+        <textarea id="answer" rows="10" cols="100"></textarea>
+    </div>
+</div>
+</body>
+</html>
