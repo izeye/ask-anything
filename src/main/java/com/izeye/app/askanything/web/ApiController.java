@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * {@link RestController} for APIs.
  *
@@ -25,7 +27,7 @@ public class ApiController {
 	}
 
 	@GetMapping("/ask")
-	public Answer ask(@RequestParam String question, HttpServletRequest request) {
+	public List<Answer> ask(@RequestParam String question, HttpServletRequest request) {
 		Question q = new Question(question, request.getRemoteAddr());
 		return this.service.ask(q);
 	}

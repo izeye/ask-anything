@@ -8,15 +8,20 @@
 <div>
     <div>
         <label>
-            Question:
+            <h2>Question</h2>
             <input type="text" id="question" size="100" />
         </label>
         <input type="button" value="Ask!" id="ask" />
         <div id="status">Enter a question.</div>
     </div>
     <div>
-        <label for="answer">Answer:</label>
-        <textarea id="answer" rows="10" cols="100"></textarea>
+        <h2>Answers</h2>
+        <label for="answerFromGpt35"><h3>GPT 3.5</h3></label>
+        <textarea id="answerFromGpt35" rows="10" cols="100"></textarea>
+        <label for="answerFromGpt4"><h3>GPT 4</h3></label>
+        <textarea id="answerFromGpt4" rows="10" cols="100"></textarea>
+        <label for="answerFromGpt4Turbo"><h3>GPT 4 Turbo</h3></label>
+        <textarea id="answerFromGpt4Turbo" rows="10" cols="100"></textarea>
     </div>
 </div>
 <script>
@@ -32,7 +37,9 @@
         $("#ask").prop("disabled", true);
 
         $.get("/api/v1/ask", { question:  question }, function (data) {
-            $("#answer").val(data.text);
+            $("#answerFromGpt35").val(data[0].text);
+            $("#answerFromGpt4").val(data[1].text);
+            $("#answerFromGpt4Turbo").val(data[2].text);
 
             $("#ask").prop("disabled", false);
 

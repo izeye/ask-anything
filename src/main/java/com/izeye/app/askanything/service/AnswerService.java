@@ -3,6 +3,8 @@ package com.izeye.app.askanything.service;
 import com.izeye.app.askanything.domain.Answer;
 import com.izeye.app.askanything.domain.Question;
 
+import java.util.List;
+
 /**
  * Answer service.
  *
@@ -10,6 +12,6 @@ import com.izeye.app.askanything.domain.Question;
  */
 public interface AnswerService {
 
-	Answer ask(Question question);
+	List<Answer> ask(Question question);
 
 }

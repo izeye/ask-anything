@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -21,9 +23,9 @@ class AnswerServiceTests {
 
 	@Test
 	void ask() {
-		Question question = new Question("What is your name?", "1.2.3.4");
-		Answer answer = this.service.ask(question);
-		assertThat(answer).isNotNull();
+		Question question = new Question("Who is the President of Korea?", "1.2.3.4");
+		List<Answer> answers = this.service.ask(question);
+		assertThat(answers).hasSize(3).allSatisfy((answer) -> assertThat(answer).isNotNull());
 	}
 
 }
