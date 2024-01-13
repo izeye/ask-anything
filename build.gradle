@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.1'
 	id 'checkstyle'
-	id 'io.spring.javaformat' version '0.0.40'
+	id 'io.spring.javaformat' version '0.0.41'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -34,7 +34,7 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
-	checkstyle 'io.spring.javaformat:spring-javaformat-checkstyle:0.0.40'
+	checkstyle 'io.spring.javaformat:spring-javaformat-checkstyle:0.0.41'
 }
 
 tasks.named('test') {
